@@ -41,10 +41,10 @@ const Navbar = () => {
                     <MenuIcon />
                 </IconButton>
                 <Typography variant="h6" className={classes.title}>
-                    Title
+                    High Performance Transportation LLC
                 </Typography>
                 <Button color="inherit" onClick={handleOpen}>
-                    Signup
+                    Member-Access
                 </Button>
             </Toolbar>
             <ModalDialog open={open} handleClose={handleClose} />
