@@ -11,8 +11,8 @@ function App() {
     <div className="App">
       <Provider store={store}>
       <MainRouter/>
-      <h1>HPT</h1>
       </Provider>
+      <h1>HPT</h1>
     </div>
   );
 }
