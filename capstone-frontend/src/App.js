@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import { Provider } from "react-redux";
-import MainRouter from './MainRouter';
+import MainRouter from './router/MainRouter';
 import  { store } from "./redux-state/redux-store"
 
 import './App.css';
