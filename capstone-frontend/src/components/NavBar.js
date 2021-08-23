@@ -1,55 +1,24 @@
-import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import Button from '@material-ui/core/Button';
-import MenuIcon from '@material-ui/icons/Menu';
-import ModalDialog from './ModalDialog';
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { startLogout } from "../actions/auth";
+import { eventLogout } from "../actions/events";
 
-const useStyles = makeStyles(theme => ({
-    menuButton: {
-        marginRight: theme.spacing(2),
-    },
-    title: {
-        flexGrow: 1,
-    },
-}));
-
-const Navbar = () => {
-    const classes = useStyles();
-    const [open, setOpen] = useState(false);
-
-    const handleOpen = () => {
-        setOpen(true);
+const NavBar = () => {
+    const { name } = useSelector((state) => state.auth);
+    const dispatch = useDispatch();
+    const handleLogout = () => {
+        dispatch(eventLogout());
+        dispatch(startLogout());
     };
-
-    const handleClose = () => {
-        setOpen(false);
-    };
-
     return (
-        <AppBar position="static">
-            <Toolbar>
-                <IconButton
-                    edge="start"
-                    color="inherit"
-                    aria-label="menu"
-                    className={classes.menuButton}
-                >
-                    <MenuIcon />
-                </IconButton>
-                <Typography variant="h6" className={classes.title}>
-                    High Performance Transportation LLC
-                </Typography>
-                <Button color="inherit" onClick={handleOpen}>
-                    Member-Access
-                </Button>
-            </Toolbar>
-            <ModalDialog open={open} handleClose={handleClose} />
-        </AppBar>
+        <div className="navbar navbar-dark bg-dark mb-4">
+            <span className="navbar-brand">{name}</span>
+            <button className="btn btn-outline-danger" onClick={handleLogout}>
+                <i className="fas fa-sign-out-alt"></i>
+                <span> get out</span>
+            </button>
+        </div>
     );
 };
 
-export default Navbar;
+export default NavBar;
