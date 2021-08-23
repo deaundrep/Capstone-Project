@@ -24,7 +24,6 @@ const MainRouter = () => {
         <Router>
             <div>
                 <Switch>
-                    <Navbar />
                     <PrivateRoute
                         exact
                         path="/"

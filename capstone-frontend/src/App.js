@@ -12,7 +12,6 @@ function App() {
       <Provider store={store}>
       <MainRouter/>
       </Provider>
-      <h1>HPT</h1>
     </div>
   );
 }
