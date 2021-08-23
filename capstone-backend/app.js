@@ -4,9 +4,12 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
+var  { dbConnection } = require("./database/config");
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+
+dbConnection();
 
 var app = express();
 
