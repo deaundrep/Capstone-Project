@@ -4,9 +4,9 @@ import { Provider } from "react-redux";
 import MainRouter from './router/MainRouter';
 import  { store } from "./redux-state/redux-store"
 
-import './App.css';
+// './App.css';
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <Provider store={store}>

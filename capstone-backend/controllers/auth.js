@@ -1,7 +1,7 @@
 const { response, json } = require("express");
-const User = require("../Model/User");
+const User = require("../models/User");
 const bcrypt = require("bcryptjs");
-const { generarJWT } = require("../helpers/jwt");
+const { generateJWT } = require("../helpers/jwt");
 
 const createUser = async (req, resp = response) => {
     const { email, password } = req.body;
@@ -23,7 +23,7 @@ const createUser = async (req, resp = response) => {
 
         await user.save();
 
-        const token = await generarJWT(user.id, user.name);
+        const token = await generateJWT(user.id, user.name);
 
         resp.status(201).json({
             ok: true,
@@ -43,7 +43,7 @@ const loginUser = async (req, resp = response) => {
     const { email, password } = req.body;
 
     try {
-        let user = await user.findOne({ email });
+        let user = await User.findOne({ email });
 
         if (!user) {
             return resp.status(400).json({
@@ -61,7 +61,7 @@ const loginUser = async (req, resp = response) => {
             });
         }
 
-        const token = await generarJWT(user.id, user.name);
+        const token = await generateJWT(user.id, user.name);
 
         resp.json({
             ok: true,
@@ -76,11 +76,11 @@ const loginUser = async (req, resp = response) => {
         });
     }
 };
-const revalidarToken = async(req, resp = response) => {
+const revalidToken = async(req, resp = response) => {
 
     const {uid, name} = req;
 
-    const token = await generarJWT(uid, name);
+    const token = await generateJWT(uid, name);
 
     resp.json({
         ok: true,
@@ -90,4 +90,4 @@ const revalidarToken = async(req, resp = response) => {
     });
 };
 
-module.exports = { createUser, loginUser, revalidarToken };
+module.exports = { createUser, loginUser, revalidToken };

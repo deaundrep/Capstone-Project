@@ -1,7 +1,7 @@
 import { types } from "../helpers/Types";
 
 const initialState = {
-    checking: true,
+    checking: false,
 };
 
 export const authReducer = (state = initialState, action) => {
